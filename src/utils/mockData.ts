@@ -295,15 +295,16 @@ const priorities: Record<string, number> = {
 
 const WalletPage: React.FC<Props> = (props: Props) => {
   const { children, ...rest } = props;
-  const balances = useWalletBalances(); // Assuming useWalletBalances is a custom hook
-  const prices = usePrices(); // Assuming usePrices is a custom hook
+  const balances = useWalletBalances();
+  const prices = usePrices(); 
 
-  const getPriority = (blockchain: string): number => priorities[blockchain] || -99;
+const getPriority = (blockchain: string): number => priorities[blockchain] || -99;
 
   const sortedBalances = useMemo(() => {
     return balances
       .filter((balance: WalletBalance) => balance.amount <= 0)
-      .sort((lhs: WalletBalance, rhs: WalletBalance) => getPriority(rhs.blockchain) - getPriority(lhs.blockchain));
+      .sort((lhs: WalletBalance, rhs: WalletBalance) => 
+      getPriority(rhs.blockchain) - getPriority(lhs.blockchain));
   }, [balances]);
 
   const rows = useMemo(() =>
@@ -312,7 +313,7 @@ const WalletPage: React.FC<Props> = (props: Props) => {
       const formattedAmount = balance.amount.toFixed();
       return (
         <WalletRow
-          className={classes.row} // Assuming classes.row is defined
+          className={classes.row} 
           key={index}
           amount={balance.amount}
           usdValue={usdValue}
