@@ -1,4 +1,11 @@
-import { Container, Grid, Stack, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import RenderGroup from "../../components/form/autocompleteField";
@@ -7,6 +14,8 @@ import { Price } from "../../types/price";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import { currencies } from "../../utils/mockData";
 import { keyframes } from "@emotion/react";
+import { VictoryChart, VictoryLine } from "victory";
+import AccessibleTable from "../../components/table/mocktable";
 
 const twirl = keyframes`
   from {
@@ -46,11 +55,15 @@ export default function Sln2Component() {
         });
       } else {
         clearErrors("fromCurrency");
-      }
-      if (fromCurrency !== undefined) {
-        const exchangeRate = toOption.price / fromOption.price;
-        const convertedAmount = fromCurrency * exchangeRate;
-        setValue("toCurrency", convertedAmount === 0 ? "Nah" : convertedAmount);
+
+        if (fromCurrency !== undefined) {
+          const exchangeRate = toOption.price / fromOption.price;
+          const convertedAmount = fromCurrency * exchangeRate;
+          setValue(
+            "toCurrency",
+            convertedAmount === 0 ? "Nah" : convertedAmount
+          );
+        }
       }
     }, 1000);
   }, [
@@ -78,50 +91,103 @@ export default function Sln2Component() {
     <FormProvider {...methods}>
       <form>
         <Container>
-          <Grid container columns={12}>
-            <Grid item xs={12} padding={2}>
-              <Typography variant="h2" fontWeight={"bold"} fontSize={"40px"}>
-                Solution 2: Fancy Form 
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                color={"#828282"}
-                fontSize={"12px"}
-                ml={"3px"}
-              >
-                Currency Converter.
-              </Typography>
+          <Stack direction={{ xs: "row", sm: "row" }} mt={2}>
+            <Grid container columns={12} spacing={4} >
+              <Grid item xs={8}>
+                <Card sx={{minHeight: 350}}>
+                  <CardContent>
+                    <Grid item xs={12}>
+                      <Typography
+                        variant="h2"
+                        fontWeight={"bold"}
+                        fontSize={"40px"}
+                      >
+                        Solution 2: Fancy Form
+                      </Typography>
+                      <Typography
+                        variant="subtitle1"
+                        color={"#828282"}
+                        fontSize={"12px"}
+                        ml={"3px"}
+                      >
+                        Currency Converter.
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12} padding={3}>
+                      <Stack
+                        direction={{ xs: "column", sm: "row" }}
+                        spacing={{ xs: 1, sm: 2, md: 4 }}
+                        sx={{ marginBottom: { xs: 1, sm: 2, md: 4 } }}
+                      >
+                        <RenderGroup
+                          setPrice={setFromOption}
+                          price={fromOption}
+                        />
+                        <RenderGroup setPrice={setToOption} price={toOption} />
+                      </Stack>
+                      <Stack sx={{ alignItems: "center" }}>
+                        <CurrencyExchangeIcon
+                          color="success"
+                          sx={{
+                            cursor: "pointer",
+                            animation: isTwirling
+                              ? `${twirl} 1s ease-in-out`
+                              : undefined,
+                          }}
+                          onClick={onExchangeFromToOption}
+                        />
+                      </Stack>
+                      <Stack
+                        direction={{ xs: "column", sm: "row" }}
+                        spacing={{ xs: 1, sm: 2, md: 4 }}
+                      >
+                        <InputField
+                          name="fromCurrency"
+                          type="number"
+                          inputRef={(input) => input && input.focus()}
+                        />
+                        <InputField
+                          name="toCurrency"
+                          type="number"
+                          readOnly={true}
+                        />
+                      </Stack>
+                    </Grid>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={3}>
+                <Grid item>
+                  <Card sx={{minHeight: 350}}>
+                    <Grid item xs={12}>
+                      {" "}
+                    
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Stack mt={8} alignItems={"center"}>
+                        <VictoryChart>
+                          <VictoryLine
+                            style={{
+                              data: { stroke: "#c43a31" },
+                              parent: { border: "1px solid #ccc" },
+                            }}
+                            data={[
+                              { x: 1, y: 2 },
+                              { x: 2, y: 3 },
+                              { x: 3, y: 5 },
+                              { x: 4, y: 4 },
+                              { x: 5, y: 7 },
+                            ]}
+                          />
+                        </VictoryChart> 
+                        <Typography variant="subtitle1">something...</Typography>
+                      </Stack>
+                    </Grid>
+                  </Card>
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid item xs={7} padding={3}>
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={{ xs: 1, sm: 2, md: 4 }}
-                sx={{ marginBottom: { xs: 1, sm: 2, md: 4 } }}
-              >
-                <RenderGroup setPrice={setFromOption} price={fromOption} />
-                <RenderGroup setPrice={setToOption} price={toOption} />
-              </Stack>
-              <Stack sx={{ alignItems: "center" }}>
-                <CurrencyExchangeIcon
-                  color="success"
-                  sx={{
-                    cursor: "pointer",
-                    animation: isTwirling
-                      ? `${twirl} 1s ease-in-out`
-                      : undefined,
-                  }}
-                  onClick={onExchangeFromToOption}
-                />
-              </Stack>
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={{ xs: 1, sm: 2, md: 4 }}
-              >
-                <InputField name="fromCurrency" type="number" />
-                <InputField name="toCurrency" type="number" readOnly={true} />
-              </Stack>
-            </Grid>
-          </Grid>
+          </Stack>
         </Container>
       </form>
     </FormProvider>
