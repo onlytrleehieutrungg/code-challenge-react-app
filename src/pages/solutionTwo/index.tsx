@@ -1,4 +1,6 @@
 import {
+  Box,
+  Button,
   Card,
   CardContent,
   Container,
@@ -92,99 +94,96 @@ export default function Sln2Component() {
       <form>
         <Container>
           <Stack direction={{ xs: "row", sm: "row" }} mt={2}>
-            <Grid container columns={12} spacing={4} >
+            <Grid container columns={12} spacing={4}>
               <Grid item xs={8}>
-                <Card sx={{minHeight: 350}}>
+                <Typography variant="h2" fontWeight={"bold"} fontSize={"40px"}>
+                  Solution 2: Fancy Form
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  color={"#828282"}
+                  fontSize={"12px"}
+                  ml={"3px"}
+                >
+                  Currency Converter.
+                </Typography>
+              </Grid>
+              <Grid item xs={3} padding={3}>
+                <Stack alignItems={"flex-end"}>
+                  {" "}
+                  <Button>Online Trading</Button>
+                </Stack>
+              </Grid>
+              <Grid item xs={8}>
+                <Card>
                   <CardContent>
-                    <Grid item xs={12}>
-                      <Typography
-                        variant="h2"
-                        fontWeight={"bold"}
-                        fontSize={"40px"}
-                      >
-                        Solution 2: Fancy Form
-                      </Typography>
-                      <Typography
-                        variant="subtitle1"
-                        color={"#828282"}
-                        fontSize={"12px"}
-                        ml={"3px"}
-                      >
-                        Currency Converter.
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={12} padding={3}>
-                      <Stack
-                        direction={{ xs: "column", sm: "row" }}
-                        spacing={{ xs: 1, sm: 2, md: 4 }}
-                        sx={{ marginBottom: { xs: 1, sm: 2, md: 4 } }}
-                      >
-                        <RenderGroup
-                          setPrice={setFromOption}
-                          price={fromOption}
-                        />
-                        <RenderGroup setPrice={setToOption} price={toOption} />
-                      </Stack>
-                      <Stack sx={{ alignItems: "center" }}>
-                        <CurrencyExchangeIcon
-                          color="success"
-                          sx={{
-                            cursor: "pointer",
-                            animation: isTwirling
-                              ? `${twirl} 1s ease-in-out`
-                              : undefined,
-                          }}
-                          onClick={onExchangeFromToOption}
-                        />
-                      </Stack>
-                      <Stack
-                        direction={{ xs: "column", sm: "row" }}
-                        spacing={{ xs: 1, sm: 2, md: 4 }}
-                      >
-                        <InputField
-                          name="fromCurrency"
-                          type="number"
-                          inputRef={(input) => input && input.focus()}
-                        />
-                        <InputField
-                          name="toCurrency"
-                          type="number"
-                          readOnly={true}
-                        />
-                      </Stack>
-                    </Grid>
+                    <Stack
+                      direction={{ xs: "column", sm: "row" }}
+                      spacing={{ xs: 1, sm: 2, md: 4 }}
+                      sx={{ marginBottom: { xs: 1, sm: 2, md: 4 } }}
+                    >
+                      <RenderGroup
+                        setPrice={setFromOption}
+                        price={fromOption}
+                      />
+                      <RenderGroup setPrice={setToOption} price={toOption} />
+                    </Stack>
+                    <Stack sx={{ alignItems: "center" }}>
+                      <CurrencyExchangeIcon
+                        color="success"
+                        sx={{
+                          cursor: "pointer",
+                          animation: isTwirling
+                            ? `${twirl} 1s ease-in-out`
+                            : undefined,
+                        }}
+                        onClick={onExchangeFromToOption}
+                      />
+                    </Stack>
+                    <Stack
+                      direction={{ xs: "column", sm: "row" }}
+                      spacing={{ xs: 1, sm: 2, md: 4 }}
+                    >
+                      <InputField
+                        name="fromCurrency"
+                        type="number"
+                        inputRef={(input) => input && input.focus()}
+                      />
+                      <InputField
+                        name="toCurrency"
+                        type="number"
+                        readOnly={true}
+                      />
+                    </Stack>
                   </CardContent>
                 </Card>
-              </Grid>
+              </Grid>{" "}
               <Grid item xs={3}>
-                <Grid item>
-                  <Card sx={{minHeight: 350}}>
-                    <Grid item xs={12}>
-                      {" "}
-                    
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Stack mt={8} alignItems={"center"}>
-                        <VictoryChart>
-                          <VictoryLine
-                            style={{
-                              data: { stroke: "#c43a31" },
-                              parent: { border: "1px solid #ccc" },
-                            }}
-                            data={[
-                              { x: 1, y: 2 },
-                              { x: 2, y: 3 },
-                              { x: 3, y: 5 },
-                              { x: 4, y: 4 },
-                              { x: 5, y: 7 },
-                            ]}
-                          />
-                        </VictoryChart> 
-                        <Typography variant="subtitle1">something...</Typography>
-                      </Stack>
-                    </Grid>
-                  </Card>
-                </Grid>
+                <Card
+                  sx={{
+                    boxShadow: "none",
+                    border: "1px ridge",
+                  }}
+                >
+                  <Stack alignItems={"center"}>
+                    <VictoryChart>
+                      <VictoryLine
+                        style={{
+                          data: { stroke: "#c43a31" },
+                          parent: { border: "1px solid #ccc" },
+                        }}
+                        data={[
+                          { x: 1, y: 2 },
+                          { x: 2, y: 3 },
+                          { x: 3, y: 5 },
+                          { x: 4, y: 4 },
+                          { x: 5, y: 7 },
+                        ]}
+                      />
+                    </VictoryChart>
+                    <Typography variant="subtitle1">something...</Typography>
+                  </Stack>
+                </Card>
               </Grid>
             </Grid>
           </Stack>
