@@ -108,13 +108,10 @@ export default function Sln2Component() {
                   Currency Converter.
                 </Typography>
               </Grid>
-              <Grid item xs={3} padding={3}>
-                <Stack alignItems={"flex-end"}>
-                  {" "}
-                  <Button>Online Trading</Button>
-                </Stack>
+              <Grid item xs={3} padding={3} justifyContent={"flex-end"}>
+                <Button sx={{ float: "right" }}>Online Trading</Button>
               </Grid>
-              <Grid item xs={8}>
+              <Grid item xs={12} md={8} lg={8}>
                 <Card>
                   <CardContent>
                     <Stack
@@ -126,7 +123,21 @@ export default function Sln2Component() {
                         setPrice={setFromOption}
                         price={fromOption}
                       />
-                      <RenderGroup setPrice={setToOption} price={toOption} />
+                      <RenderGroup
+                        setPrice={setToOption}
+                        price={toOption}
+                        sx={{
+                          display: { xs: "none", sm: "block", md: "block" },
+                        }}
+                      />
+                      <InputField
+                        name="fromCurrency"
+                        type="number"
+                        sx={{
+                          display: { xs: "block", sm: "none", md: "none" },
+                        }}
+                        inputRef={(input) => input && input.focus()}
+                      />
                     </Stack>
                     <Stack sx={{ alignItems: "center" }}>
                       <CurrencyExchangeIcon
@@ -148,6 +159,16 @@ export default function Sln2Component() {
                         name="fromCurrency"
                         type="number"
                         inputRef={(input) => input && input.focus()}
+                        sx={{
+                          display: { xs: "none", sm: "block", md: "block" },
+                        }}
+                      />
+                      <RenderGroup
+                        setPrice={setToOption}
+                        price={toOption}
+                        sx={{
+                          display: { xs: "block", sm: "none", md: "none" },
+                        }}
                       />
                       <InputField
                         name="toCurrency"
@@ -158,7 +179,7 @@ export default function Sln2Component() {
                   </CardContent>
                 </Card>
               </Grid>{" "}
-              <Grid item xs={3}>
+              <Grid item xs={12} md={3} lg={3}>
                 <Card
                   sx={{
                     boxShadow: "none",
