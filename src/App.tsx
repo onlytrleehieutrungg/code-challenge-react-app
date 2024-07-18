@@ -5,6 +5,7 @@ import Sln3Component from "./pages/solutionThree";
 import Sln2Component from "./pages/solutionTwo";
 import HomePage from "./pages/homePage";
 import ResponsiveAppBar from "./layouts/header";
+import Sln4Component from "./pages/solutionFour";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/solution1" element={<Sln1Component />} />
           <Route path="/solution2" element={<Sln2Component />} />
           <Route path="/solution3" element={<Sln3Component />} />
+          <Route path="/solution4" element={<Sln4Component />} />
         </Routes>
       </div>
     </Router>

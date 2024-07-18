@@ -1,5 +1,4 @@
 import { Container, Grid, Link, Stack, Typography } from "@mui/material";
-import React from "react";
 
 function HomePage() {
   return (
@@ -26,6 +25,7 @@ function HomePage() {
               <Link href="/solution1">Solution 1</Link>
               <Link href="/solution2">Solution 2</Link>
               <Link href="/solution3">Solution 3</Link>
+              <Link href="/solution4">Todo App</Link>
             </Stack>
           </Grid>
         </Grid>

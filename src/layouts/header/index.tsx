@@ -16,6 +16,7 @@ const pages = [
   { label: "Solution 1", route: "/solution1" },
   { label: "Solution 2", route: "/solution2" },
   { label: "Solution 3", route: "/solution3" },
+  { label: "Todo App", route: "/solution4" },
 ];
 
 function ResponsiveAppBar() {

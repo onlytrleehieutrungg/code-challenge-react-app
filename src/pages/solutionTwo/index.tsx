@@ -1,23 +1,21 @@
+import { keyframes } from "@emotion/react";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import {
-  Box,
   Button,
   Card,
   CardContent,
   Container,
   Grid,
   Stack,
-  Typography,
+  Typography
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { VictoryChart, VictoryLine } from "victory";
 import RenderGroup from "../../components/form/autocompleteField";
 import InputField from "../../components/form/inputField";
 import { Price } from "../../types/price";
-import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import { currencies } from "../../utils/mockData";
-import { keyframes } from "@emotion/react";
-import { VictoryChart, VictoryLine } from "victory";
-import AccessibleTable from "../../components/table/mocktable";
 
 const twirl = keyframes`
   from {
@@ -40,9 +38,11 @@ export default function Sln2Component() {
   //   fromCurrency: yup.number().positive("Value must be greater than 0") || 0,
   //   toCurrency: yup.number().positive("Value must be greater than 0") || 0,
   // });
+
   const methods = useForm({
     // resolver: yupResolver(schema),
   });
+
   const { watch, setValue, setError, clearErrors } = methods;
   const fromCurrency = watch("fromCurrency");
 
@@ -57,7 +57,6 @@ export default function Sln2Component() {
         });
       } else {
         clearErrors("fromCurrency");
-
         if (fromCurrency !== undefined) {
           const exchangeRate = toOption.price / fromOption.price;
           const convertedAmount = fromCurrency * exchangeRate;
