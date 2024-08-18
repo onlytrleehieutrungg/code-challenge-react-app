@@ -7,7 +7,7 @@ import {
   CardContent,
   List,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import { useRef, useState } from "react";
 import { Task } from "../../../types/task";
@@ -26,6 +26,7 @@ export default function TaskList({
   onDeleteTask,
 }: TaskListProps) {
   const [isNew, setIsNew] = useState(false);
+  const [newTask, setNewTask] = useState<Task>();
   const inputRef = useRef<HTMLInputElement>(null);
   console.log(tasks);
   return (
@@ -55,46 +56,46 @@ export default function TaskList({
             />
           )}
         </List>
-      </CardContent>
 
-      <CardActions>
-        {isNew ? (
-          <Stack direction={"row"} p={1}>
+        <CardActions>
+          {isNew ? (
+            <Stack direction={"row"} >
+              <Button
+                onClick={() => {
+                  onAddTask(inputRef.current?.value!);
+                  setIsNew(false);
+                }}
+                variant="contained"
+              >
+                Add
+              </Button>
+              <Button
+                onClick={() => {
+                  setIsNew(false);
+                }}
+                endIcon={<ClearIcon />}
+                variant="text"
+              >
+                {""}
+              </Button>
+            </Stack>
+          ) : (
             <Button
+              size="small"
+              color="primary"
+              startIcon={<AddIcon />}
               onClick={() => {
-                onAddTask(inputRef.current?.value!);
-                setIsNew(false);
+                setIsNew(true);
+                if (inputRef.current) {
+                  inputRef.current.focus();
+                }
               }}
-              variant="contained"
             >
-              Add
+              Add new task
             </Button>
-            <Button
-              onClick={() => {
-                setIsNew(false);
-              }}
-              endIcon={<ClearIcon />}
-              variant="text"
-            >
-              {""}
-            </Button>
-          </Stack>
-        ) : (
-          <Button
-            size="small"
-            color="primary"
-            startIcon={<AddIcon />}
-            onClick={() => {
-              setIsNew(true);
-              if (inputRef.current) {
-                inputRef.current.focus();
-              }
-            }}
-          >
-            Add new task
-          </Button>
-        )}
-      </CardActions>
+          )}
+        </CardActions>
+      </CardContent>
     </Card>
   );
 }

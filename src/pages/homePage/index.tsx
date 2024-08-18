@@ -26,6 +26,7 @@ function HomePage() {
               <Link href="/solution2">Solution 2</Link>
               <Link href="/solution3">Solution 3</Link>
               <Link href="/solution4">Todo App</Link>
+              <Link href="/solution5">Debounce</Link>
             </Stack>
           </Grid>
         </Grid>

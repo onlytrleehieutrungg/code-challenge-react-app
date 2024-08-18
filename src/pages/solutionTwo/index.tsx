@@ -87,6 +87,7 @@ export default function Sln2Component() {
       setValue("fromCurrency", tempCurr === 0 ? "Nah" : tempCurr);
     }, 1000);
   }
+    
 
   return (
     <FormProvider {...methods}>

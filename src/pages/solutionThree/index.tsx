@@ -10,7 +10,7 @@ import { Chip, Container, Grid, Stack, Typography } from "@mui/material";
 import { beforeCode, afterCode, beforeText, afterText } from "../../utils/mockData";
 
 function Sln3Component() {
-  const [code, setCode] = React.useState(beforeCode);
+  const [code, setCode] = React.useState<string>(beforeCode);
   const [comment, setComment] = React.useState(beforeText);
   const [beforeVariant, setBeforeVariant] = useState<"outlined" | "filled">(
     "filled"

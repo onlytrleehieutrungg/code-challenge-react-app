@@ -90,6 +90,7 @@ export default function TasKDetail({
       >
         {isEditing ? (
           <InputBase
+            key={task.id}
             inputRef={(input) => input && input.focus()}
             value={task.text}
             onChange={(e) => {
