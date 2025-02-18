@@ -13,10 +13,11 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
 const pages = [
-  { label: "Solution 1", route: "/solution1" },
-  { label: "Solution 2", route: "/solution2" },
-  { label: "Solution 3", route: "/solution3" },
-  { label: "Todo App", route: "/solution4" },
+  // { label: "Solution 1", route: "/solution1" },
+  { label: "Currency Exchange", route: "/currency-exchange" },
+  { label: "Todo App", route: "/todo-app" },
+  { label: "Debounce", route: "/debounce" },
+  { label: "Category Tree", route: "/category-tree" },
 ];
 
 function ResponsiveAppBar() {

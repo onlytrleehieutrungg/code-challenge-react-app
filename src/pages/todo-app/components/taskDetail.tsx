@@ -32,8 +32,6 @@ export default function TasKDetail({
   inputRef,
 }: TaskBoxProps) {
   const [isEditing, setIsEditing] = useState(false);
-  const [checked, setChecked] = useState([0]);
-
   const handleToggle = (value: Task) => () => {
     onChange({
       ...value,

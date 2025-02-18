@@ -26,9 +26,7 @@ export default function TaskList({
   onDeleteTask,
 }: TaskListProps) {
   const [isNew, setIsNew] = useState(false);
-  const [newTask, setNewTask] = useState<Task>();
   const inputRef = useRef<HTMLInputElement>(null);
-  console.log(tasks);
   return (
     <Card>
       <CardContent>
